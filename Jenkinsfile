@@ -14,6 +14,11 @@ pipeline {
                 git 'https://github.com/yuvaraniyuva/EKS.git'
             }
         }
+        stage('Checkout SCM') {
+            steps {
+                checkout scm
+            }
+        }
 
         stage('Build Docker Image') {
             steps {
