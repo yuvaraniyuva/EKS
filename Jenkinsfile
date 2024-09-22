@@ -26,7 +26,7 @@ pipeline {
         stage('Push to ECR') {
             steps {
                 script {
-                    docker.withRegistry("https://${AWS_REGION}.dkr.ecr.amazonaws.com", 'ecr:aws-cred') {
+                    docker.withRegistry("https://${AWS_REGION}.dkr.ecr.amazonaws.com", 'aws-cred') {
                         dockerImage.push()
                     }
                 }
