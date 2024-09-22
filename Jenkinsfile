@@ -6,7 +6,7 @@ pipeline {
         ECR_REPO = '533267389601.dkr.ecr.us-east-1.amazonaws.com/nginxapp'
         EKS_CLUSTER = 'my-cluster'
  //     KUBECONFIG = credentials('kubeconfig-credentials-id')
-        AWS_CREDENTIALS = credentials('aws-cred')
+        registryCredential = 'ecr:us-east-1:aws-cred'
     }
 
     stages {
@@ -36,7 +36,7 @@ pipeline {
         stage('Push to ECR') {
             steps {
                 script {
-                    docker.withRegistry("533267389601.dkr.ecr.us-east-1.amazonaws.com/nginxapp", "${AWS_CREDENTIALS}") {
+                    docker.withRegistry("533267389601.dkr.ecr.us-east-1.amazonaws.com/nginxapp", registryCredential) {
                         dockerImage.push()
                     }
                 }
