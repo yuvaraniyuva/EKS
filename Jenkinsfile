@@ -5,7 +5,7 @@ pipeline {
         AWS_REGION = 'us-east-2'
         ECR_REPO = '533267389601.dkr.ecr.us-east-1.amazonaws.com/nginxapp'
         EKS_CLUSTER = 'my-cluster'
- #       KUBECONFIG = credentials('kubeconfig-credentials-id')
+ //     KUBECONFIG = credentials('kubeconfig-credentials-id')
     }
 
     stages {
