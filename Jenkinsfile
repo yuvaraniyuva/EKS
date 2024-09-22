@@ -6,7 +6,7 @@ pipeline {
         ECR_REPO = '533267389601.dkr.ecr.us-east-1.amazonaws.com/nginxapp'
         EKS_CLUSTER = 'my-cluster'
  //     KUBECONFIG = credentials('kubeconfig-credentials-id')
-        registryCredential = 'ecr:us-east-1:aws'
+        registryCredential = 'aws'
     }
 
     stages {
