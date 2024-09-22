@@ -36,7 +36,7 @@ pipeline {
         stage('Push to ECR') {
             steps {
                 script {
-                    docker.withRegistry("533267389601.dkr.ecr.us-east-1.amazonaws.com/nginxapp", "${ECR_REPO}") {
+                    docker.withRegistry("533267389601.dkr.ecr.us-east-1.amazonaws.com/nginxapp", "${AWS_CREDENTIALS}") {
                         dockerImage.push()
                     }
                 }
