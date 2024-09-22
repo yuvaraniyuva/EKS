@@ -11,12 +11,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/yuvaraniyuva/EKS.git'
-            }
-        }
-        stage('Checkout SCM') {
-            steps {
-                checkout scm
+                git branch: 'main', url: 'https://github.com/yuvaraniyuva/EKS.git'
             }
         }
 
