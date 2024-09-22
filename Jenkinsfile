@@ -6,6 +6,7 @@ pipeline {
         ECR_REPO = '533267389601.dkr.ecr.us-east-1.amazonaws.com/nginxapp'
         EKS_CLUSTER = 'my-cluster'
  //     KUBECONFIG = credentials('kubeconfig-credentials-id')
+        AWS_CREDENTIALS = credentials('aws-cred')
     }
 
     stages {
@@ -22,11 +23,20 @@ pipeline {
                 }
             }
         }
-
+        stage('Login to ECR') {
+            steps {
+                script {
+                    sh '''
+                    aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 533267389601.dkr.ecr.us-east-1.amazonaws.com
+                    '''
+                }
+            }
+        }
+        // Other stages...
         stage('Push to ECR') {
             steps {
                 script {
-                    docker.withRegistry("533267389601.dkr.ecr.us-east-1.amazonaws.com/nginxapp", 'ecr:us-east-1:aws-cred') {
+                    docker.withRegistry("533267389601.dkr.ecr.us-east-1.amazonaws.com/nginxapp", "${ECR_REPO}") {
                         dockerImage.push()
                     }
                 }
