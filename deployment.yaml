@@ -16,4 +16,4 @@ spec:
       - name: nginx-app
         image: 533267389601.dkr.ecr.us-east-1.amazonaws.com/nginxapp:latest
         ports:
-        - containerPort: 81
+        - containerPort: 80
