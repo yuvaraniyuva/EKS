@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: java-tomcat
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: java-tomcat
+  template:
+    metadata:
+      labels:
+        app: java-tomcat
+    spec:
+      containers:
+      - name: nginx-app
+        image: tomcat:latest
+        ports:
+        - containerPort: 8080
