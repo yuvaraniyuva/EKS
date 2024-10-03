@@ -10,7 +10,7 @@ pipeline{
       NEXUS_PASS = 'admin'
       RELEASE_REPO = 'artifact-upload'
       CENTRAL_REPO = 'maven-dep'
-      NEXUSIP = '172.31.87.178'
+      NEXUSIP = '172.31.95.62'
       NEXUSPORT = '8081'
       NEXUS_GRP_REPO = 'group'
       NEXUS_LOGIN = 'nexus'
