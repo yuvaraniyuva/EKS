@@ -1,5 +1,5 @@
 pipeline{
-    agent { label 'tomcat' } 
+    agent { label 'java' } 
     tools {
         maven "MAVEN3"
         jdk "Java17"
