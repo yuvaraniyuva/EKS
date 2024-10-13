@@ -1,16 +1,16 @@
 pipeline{
     agent { label 'tomcat' } 
     tools {
-        maven "MAVEN3"
-        jdk "Java17"
+        maven "Maven3"
+        jdk "java17"
     }
 
     environment{
       NEXUS_USER = 'admin'
-      NEXUS_PASS = 'admin'
+      NEXUS_PASS = 'password'
       RELEASE_REPO = 'artifact-upload'
       CENTRAL_REPO = 'maven-dep'
-      NEXUSIP = '172.31.95.62'
+      NEXUSIP = '172.31.21.44'
       NEXUSPORT = '8081'
       NEXUS_GRP_REPO = 'group'
       NEXUS_LOGIN = 'nexus'
