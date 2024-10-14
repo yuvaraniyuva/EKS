@@ -94,6 +94,7 @@ pipeline{
             steps {
                 script {
                     dockerImage = docker.build("tomcat:latest")
+                    dockerImage.push()
                 }
             }
       }
