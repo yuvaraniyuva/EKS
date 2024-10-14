@@ -29,7 +29,8 @@ pipeline{
                   withCredentials([string(credentialsId: DOCKER_TOKEN, variable: 'DOCKER_TOKEN')]) {
                         sh 'echo $DOCKER_TOKEN | docker login -u devopsyuvi --password-stdin'
                         docker.withRegistry('', DOCKER_LOGIN) {
-                            dockerImage.push()
+                            dockerImage.push("$BUILD_NUMBER")
+                            dockerImage.push('latest')
                         }
                   }
                 }
