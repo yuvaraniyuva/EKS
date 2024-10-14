@@ -25,7 +25,7 @@ pipeline{
       stage('Build & Push Docker Image') {
             steps {
                 script {
-                  dockerImage = docker.build( devopsyuvi/tomcat + ":$BUILD_NUMBER")
+                  dockerImage = docker.build( "devopsyuvi/tomcat + ":$BUILD_NUMBER"")
                   withCredentials([string(credentialsId: DOCKER_TOKEN, variable: 'DOCKER_TOKEN')]) {
                         sh 'echo $DOCKER_TOKEN | docker login -u devopsyuvi --password-stdin'
                         docker.withRegistry('', DOCKER_LOGIN) {
