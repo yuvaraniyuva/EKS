@@ -95,8 +95,8 @@ pipeline{
       stage('Build & Push Docker Image') {
             steps {
                 script {
-                  dockerImage = docker.build("tomcat:latest")
-                  docker.withRegistry( '', "${DOCKER_LOGIN}" ){
+                  dockerImage = docker.build("devopsyuvi/tomcat:latest")
+                  docker.withRegistry( '', DOCKER_LOGIN ){
                   //dockerImage.push("$BUILD_NUMBER")
                   dockerImage.push()
                   }
