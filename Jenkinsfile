@@ -25,7 +25,7 @@ pipeline{
             steps {
                 script {
                   dockerImage = docker.build("tomcat:latest")
-                  docker.withRegistry( '', "${DOCKER_LOGIN}" ){
+                  docker.withRegistry( '', DOCKER_LOGIN ){
                   //dockerImage.push("$BUILD_NUMBER")
                   dockerImage.push()
                   }
