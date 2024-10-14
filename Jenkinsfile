@@ -14,6 +14,7 @@ pipeline{
       NEXUSPORT = '8081'
       NEXUS_GRP_REPO = 'group'
       NEXUS_LOGIN = 'nexuslogin'
+      DOCKER_LOGIN = 'dockerlogin'
       SONARSERVER = 'sonarserver'
       SONARSCANNER = 'sonarscanner'
     }
@@ -90,14 +91,18 @@ pipeline{
           )
         }
       }
-      stage('Build Docker Image') {
+      stage('Build & Push Docker Image') {
             steps {
                 script {
-                    dockerImage = docker.build("tomcat:latest")
-                    dockerImage.push()
+                  dockerImage = docker.build("tomcat:latest")
+                  docker.withRegistry( '', '${DOCKER_LOGIN}' ){
+                  //dockerImage.push("$BUILD_NUMBER")
+                  dockerImage.push()
+                  }
+
+                  
                 }
             }
-      }
       stage('Deploy to EKS') {
             steps {
                 script {
