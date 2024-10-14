@@ -14,7 +14,7 @@ pipeline{
       NEXUSPORT = '8081'
       NEXUS_GRP_REPO = 'group'
       NEXUS_LOGIN = 'nexuslogin'
-      DOCKER_LOGIN = 'dockerlogin'
+      DOCKER_LOGIN = 'dockertoken'
       DOCKER_TOKEN = 'dockertoken'
       SONARSERVER = 'sonarserver'
       SONARSCANNER = 'sonarscanner'
@@ -29,7 +29,7 @@ pipeline{
                   //docker.withRegistry( '', DOCKER_LOGIN ){
                   //dockerImage.push("$BUILD_NUMBER")
                   //dockerImage.push()
-                  withCredentials(credentialsId: DOCKER_LOGIN, variable: 'DOCKER_TOKEN') {
+                  withCredentials([string(credentialsId: DOCKER_LOGIN, variable: 'DOCKER_TOKEN')]) {
                         sh 'echo $DOCKER_TOKEN | docker login -u devopsyuvi --password-stdin'
                         docker.withRegistry('', "${DOCKER_TOKEN}") {
                             docker.image("${DOCKER_IMAGE}").push()
