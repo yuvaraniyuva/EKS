@@ -31,8 +31,9 @@ pipeline{
                   //dockerImage.push()
                   withCredentials([string(credentialsId: DOCKER_LOGIN, variable: 'DOCKER_TOKEN')]) {
                         sh 'echo $DOCKER_TOKEN | docker login -u devopsyuvi --password-stdin'
-                        docker.withRegistry('', "${DOCKER_TOKEN}") {
-                            docker.image("${DOCKER_IMAGE}").push()
+                        docker.withRegistry('', DOCKER_TOKEN) {
+                            //docker.image("${DOCKER_IMAGE}").push()
+                            dockerImage.push()
                         }
                     }
                   }
